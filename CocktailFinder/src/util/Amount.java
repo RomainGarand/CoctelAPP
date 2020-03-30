@@ -1,6 +1,17 @@
 package util;
 
+/** Represents amounts for ingredients
+ * 
+ */
 public class Amount {
-	public float value;
-	public String unit;
+	private String desc;
+	
+	public Amount(String description) {
+		this.desc = description;
+	}
+	
+	@Override
+	public String toString() {
+		return this.desc;
+	}
 }
