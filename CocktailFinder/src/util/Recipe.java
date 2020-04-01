@@ -1,10 +1,9 @@
 package util;
 
 import java.util.ArrayList;
+
 import java.util.List;
-
-import com.google.gson.JsonObject;
-
+import org.json.simple.JSONObject;
 /**Represents a cocktail recipe for the other classes
  *
  */
@@ -19,7 +18,7 @@ public class Recipe {
 	 * @param obj the JSON description of a cocktail recipe matching 
 	 *            TheCoctailDB's format
 	 */
-	public Recipe(JsonObject obj) {
+	public Recipe(JSONObject obj) {
 		this.name = obj.get("strDrink").toString();
 		this.instructions = obj.get("strInstructions").toString();
 		this.ingredients = new ArrayList<String>();
