@@ -1,8 +1,10 @@
 package util;
 
 import java.util.ArrayList;
-
+import java.util.Iterator;
 import java.util.List;
+
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 /**Represents a cocktail recipe for the other classes
  *
@@ -12,6 +14,7 @@ public class Recipe {
 	private String instructions;
 	private List<String> ingredients;
 	private List<Amount> amounts;
+	private String photoURL;
 	
 	/** Creates a cocktail recipe from its JSON description
 	 * 
@@ -19,20 +22,21 @@ public class Recipe {
 	 *            TheCoctailDB's format
 	 */
 	public Recipe(JSONObject obj) {
-		this.name = obj.get("strDrink").toString();
-		this.instructions = obj.get("strInstructions").toString();
+		
+		JSONArray l = (JSONArray) obj.get("drinks");
+        JSONObject innerObj = (JSONObject) l.iterator().next();
+		this.name = (String) innerObj.get("strDrink");
+		this.instructions = (String) innerObj.get("strInstructions");
 		this.ingredients = new ArrayList<String>();
 		this.amounts = new ArrayList<Amount>();
-		
+		this.photoURL = (String) innerObj.get("strDrinkThumb");
+		// take value from the json array separately
 		int i = 1;
-		while(obj.get("strIngredient" + i) != null && i<=15) {
-			this.ingredients.add(obj.get("strIngredient" + i).toString());
-			
-			this.amounts.add(new Amount(obj.get("strMeasure" + i).toString()));
-		 	i++;
-		}
-		
-		
+        while(innerObj.get("strIngredient" + i) != null && i<=15) {
+        	this.ingredients.add( (String) innerObj.get("strIngredient" + i));       	
+			this.amounts.add(new Amount( (String) innerObj.get("strMeasure" + i)));
+		 	i++;	       
+		}			
 	}
 	
 	/** Retrieves the name of the cocktail
@@ -67,5 +71,22 @@ public class Recipe {
 	 */
 	public List<Amount> getAmounts() {
 		return amounts;
+	}
+	
+	/** Retrieves the photo of the cocktail
+	 * 
+	 *  @return the photoURL of the cocktail as a string
+	 */
+	public String getPhotoURL() {
+		return photoURL;
+	}
+	/** Print all informations from one recipe
+	 * 
+	 */
+	public void Print() {
+		System.out.println("Name: " + this.getName() + "\n" +
+							"Ingredients: " + this.getIngredients() + "\n" + "Amount: " + this.getAmounts() + "\n" +
+							"Instructions: " + this.getInstructions() + "\n"); 
+							//"Url Photo :" + this.getPhotoURL());
 	}
 }

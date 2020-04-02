@@ -7,6 +7,7 @@ import java.util.List;
 import services.CocktailSearcher;
 import services.DrinkIdentifier;
 import util.Photo;
+import util.Recipe;
 
 public class App {
 
@@ -15,6 +16,7 @@ public class App {
 		
 		DrinkIdentifier di = new DrinkIdentifier();
 		CocktailSearcher cs = new CocktailSearcher();
+		List<Recipe> lRecipe = new ArrayList<Recipe>();
 		
 		//Start the UI
 		
@@ -43,14 +45,13 @@ public class App {
 			
 			//Search for recipes using the ingredients listed
 				//Call the coktail searcher
-					cs.findRecipe(ingredients);
-
-					stop = true;
-					System.exit(0);
+					lRecipe = cs.findRecipe(ingredients);		
+					
 			//Display relevant information in the UI
+			cs.PrintAll(lRecipe);
 			
-			
-			
+			stop = true; // <--- BUG ? doesn't work 
+			System.exit(0);
 		}
 	}
 }

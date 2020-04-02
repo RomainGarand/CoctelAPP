@@ -28,7 +28,7 @@ public class JsonParseTest {
         //.url("https://the-cocktail-db.p.rapidapi.com/lookup.php?i=11227")
     	//.url("https://www.thecocktaildb.com/api/json/v1/1/random.php")
 
-    	//.url("https://www.thecocktaildb.com/api/json/v1/1/search.php?s=GreenGoblin")
+    	.url("https://www.thecocktaildb.com/api/json/v1/1/search.php?s=501 Blue")
     	.get()
         .addHeader("x-rapidapi-host", "the-cocktail-db.p.rapidapi.com")
         .addHeader("x-rapidapi-key", "4527d57cc6msh768e09bb02bba03p172fd8jsn48546d794e1f")
