@@ -32,7 +32,7 @@ public class CocktailSearcher {
 		int max = 0;
 		while (i.hasNext()) {
 			ingredient = i.next();
-			System.out.println(ingredient);
+			//System.out.println(ingredient);
 			try {
 				Request request = new Request.Builder()
 						.url("https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=" + ingredient).get()
@@ -86,8 +86,8 @@ public class CocktailSearcher {
 		return lRecipe;
 	}
 
-	/**
-	 * Print all informations from each recipe
+	
+	/** Print all informations from each recipe
 	 * 
 	 * @param lRecipe a list of Recipe objects
 	 */

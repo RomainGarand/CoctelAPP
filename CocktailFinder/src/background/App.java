@@ -6,6 +6,7 @@ import java.util.List;
 
 import services.CocktailSearcher;
 import services.DrinkIdentifier;
+import userInterface.AmendInterface;
 import util.Photo;
 import util.Recipe;
 
@@ -13,7 +14,9 @@ public class App {
 
 	public static void main(String[] args) throws IOException {
 		//Create the UI Elements
+		AmendInterface ai = new AmendInterface();
 		
+		//Create the services
 		DrinkIdentifier di = new DrinkIdentifier();
 		CocktailSearcher cs = new CocktailSearcher();
 		List<Recipe> lRecipe = new ArrayList<Recipe>();
@@ -42,6 +45,8 @@ public class App {
 			
 			//Display the list of drinks in the UI
 			//Get corrections from the user
+			ingredients = ai.amend(ingredients);
+			
 			
 			//Search for recipes using the ingredients listed
 				//Call the coktail searcher
@@ -50,8 +55,7 @@ public class App {
 			//Display relevant information in the UI
 			cs.PrintAll(lRecipe);
 			
-			stop = true; // <--- BUG ? doesn't work 
-			System.exit(0);
+			stop = true;
 		}
 	}
 }

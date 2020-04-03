@@ -3,9 +3,11 @@ package util;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+
 /**Represents a cocktail recipe for the other classes
  *
  */
@@ -80,7 +82,8 @@ public class Recipe {
 	public String getPhotoURL() {
 		return photoURL;
 	}
-	/** Print all informations from one recipe
+	
+	/** Prints all informations from one recipe
 	 * 
 	 */
 	public void Print() {
@@ -89,4 +92,5 @@ public class Recipe {
 							"Instructions: " + this.getInstructions() + "\n"); 
 							//"Url Photo :" + this.getPhotoURL());
 	}
+	
 }
