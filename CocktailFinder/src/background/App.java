@@ -54,7 +54,10 @@ public class App {
 					
 			//Display relevant information in the UI
 			cs.PrintAll(lRecipe);
-			
+			//Save a picture of all the relevant cocktails
+			for(int i = 0; i< lRecipe.size(); i++) {
+				cs.SavePhoto(lRecipe.get(i));
+			}
 			stop = true;
 		}
 	}

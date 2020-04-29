@@ -1,7 +1,18 @@
 package services;
 
 import java.util.*;
+
+import javax.imageio.IIOException;
+import javax.imageio.ImageIO;
+
+import java.awt.Graphics2D;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.lang.*;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -13,6 +24,7 @@ import org.json.simple.parser.JSONParser;
 
 public class CocktailSearcher {
 
+	
 	/**
 	 * Finds recipes in theCocktailDB that use given ingredients
 	 * 
@@ -98,5 +110,34 @@ public class CocktailSearcher {
 			recipe = (Recipe) i.next();
 			recipe.Print();
 		}
+		
 	}
+	
+	public void SavePhoto(Recipe r) throws IOException {
+		int scaledWidth = 1024;
+        int scaledHeight = 768;
+        String outputImagePath = "/home/rgarand/Documents/Git/CoctelAPP/Photo/" + r.getName() +".jpeg";
+        System.out.println(outputImagePath);
+		URL url = new URL(r.getPhotoURL());
+		try {
+			Image image = ImageIO.read(url);   	
+	    	// creates output image
+	        BufferedImage outputImage = new BufferedImage(scaledWidth,
+	               scaledHeight, ((BufferedImage) image).getType());
+	 
+	        // scales the input image to the output image
+	        Graphics2D g2d = outputImage.createGraphics();
+	        g2d.drawImage(image, 0, 0, scaledWidth, scaledHeight, null);
+	        g2d.dispose();
+	 
+	        // extracts extension of output file
+	        String formatName = outputImagePath.substring(outputImagePath
+	                .lastIndexOf(".") + 1);
+	 
+	        // writes to output file
+	        ImageIO.write(outputImage, formatName, new File(outputImagePath));
+		} catch (IIOException e) {
+			//protect from unsupported image type
+	    }
+	}	
 }
