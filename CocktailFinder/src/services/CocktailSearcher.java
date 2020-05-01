@@ -9,6 +9,7 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.lang.*;
 import java.net.MalformedURLException;
@@ -116,9 +117,11 @@ public class CocktailSearcher {
 	public void SavePhoto(Recipe r) throws IOException {
 		int scaledWidth = 1024;
         int scaledHeight = 768;
-        String outputImagePath = "/home/rgarand/Documents/Git/CoctelAPP/Photo/" + r.getName() +".jpeg";
+        String outputDirectoryPath = "./Photo/";
+        String outputImagePath = outputDirectoryPath + r.getName() +".jpeg";
         System.out.println(outputImagePath);
 		URL url = new URL(r.getPhotoURL());
+		//URL url = new URL("https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/Egyptian_Grains.jpg/204px-Egyptian_Grains.jpg");
 		try {
 			Image image = ImageIO.read(url);   	
 	    	// creates output image
@@ -135,9 +138,13 @@ public class CocktailSearcher {
 	                .lastIndexOf(".") + 1);
 	 
 	        // writes to output file
+	        File outputDirectory = new File(outputDirectoryPath);
+	    	outputDirectory.mkdir(); //Creates the output directory if it doesn't already exist
 	        ImageIO.write(outputImage, formatName, new File(outputImagePath));
 		} catch (IIOException e) {
 			//protect from unsupported image type
+			//e.printStackTrace();
+			System.out.println("The picture of "+  r.getName() + " could not be saved.");
 	    }
 	}	
 }
