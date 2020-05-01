@@ -3,7 +3,7 @@ package userInterface;
 import java.util.List;
 import java.util.Scanner;
 
-/** Interface used to amend the list of ingredients returned by the drink identifier
+/** Interface used to amend the list of ingredients returned by the identifying phase
  *
  */
 public class AmendInterface {
@@ -50,6 +50,7 @@ public class AmendInterface {
 			System.out.println("ok");
 		}
 		
+		scanner.close();
 		return ingredients;
 	}
 	
