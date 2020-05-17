@@ -84,7 +84,6 @@ public class Recipe {
 	}
 	
 	/** Prints all informations from one recipe
-	 * 
 	 */
 	public void Print() {
 		System.out.println("Name: " + this.getName() + "\n" +

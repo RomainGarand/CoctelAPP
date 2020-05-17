@@ -119,7 +119,7 @@ public class CocktailSearcher {
         int scaledHeight = 768;
         String outputDirectoryPath = "./Photo/";
         String outputImagePath = outputDirectoryPath + r.getName() +".jpeg";
-        System.out.println(outputImagePath);
+        System.out.println("Saving picture for " + r.getName() + " at " + outputImagePath);
 		URL url = new URL(r.getPhotoURL());
 		//URL url = new URL("https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/Egyptian_Grains.jpg/204px-Egyptian_Grains.jpg");
 		try {
